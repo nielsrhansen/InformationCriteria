@@ -1,0 +1,41 @@
+slides > slide.title-slide hgroup h1 {
+  font-size: 45pt;
+  text-align: center;
+}
+    
+.small {
+  font-size: 80%;
+  padding-top: 10px;
+}
+
+slides > slide {
+  color: #000000;
+  font-size: 30px;  
+  font-family: sans-serif; 
+}
+.prettyprint {
+  background-color: #f8f8f8;
+}
+
+.prettyprint .pln {
+  color: #000000;
+}
+
+pre {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  left: 20px;
+  width: 90%;
+  padding-left: 8px;
+}
+
+ul > li:before {
+  content: '\2022';
+}
+
+.quote {
+  text-align: right;
+  font-size: 80%;
+  color: #707070; 
+}
