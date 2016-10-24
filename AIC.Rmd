@@ -1,7 +1,7 @@
 ---
 title: "Why AIC doesn't do what you think <br> and <br> what can be done about it"
 author: "Niels Richard Hansen"
-date: "10 Oct 2016"
+date: "October 25 2016"
 output: 
   ioslides_presentation:
     fig_width: 7
@@ -867,4 +867,8 @@ Hoeting *et al.*, Bayesian Model Averaging: A Tutorial, 1999
 
 <div style="text-align: center; padding-top: 30px;">
 **Let's do better!**
+</div>
+
+<div style="padding-top: 30px">
+Source code: https://github.com/nielsrhansen/InformationCriteria
 </div>
