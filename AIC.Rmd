@@ -4,6 +4,8 @@ author: "Niels Richard Hansen"
 date: "October 25 2016"
 output: 
   ioslides_presentation:
+    mathjax: local
+    self_contained: false
     fig_width: 7
     fig_height: 4
     css: "AIC.css"
@@ -381,7 +383,7 @@ riskPlot <- function(risk, mylim = c(0, 1.5 * risk$mse0)) {
                          linetype = c(1, 1, 2, 2),
                          shape = c(NA, NA, NA, NA))),
   labels = c("MSE",
-             "E(AIC)",
+             "E(AIC) - n",
              expression(paste("MSE: ", hat(xi)[1/2])),  
              expression(paste("MSE: ", hat(xi)[infinity])))
   ) 
@@ -439,7 +441,7 @@ riskPlot2 <- function(risk, wylim = c(0, 0.2), mylim = c(0, 1.5 * risk$mse0)) {
                          linetype = c(1, 1, 2, 2, 2, 2),
                          shape = c(NA, NA, NA, NA, NA, NA))),
   labels = c("MSE",
-             "E(IC)",
+             "E(IC) - n",
              expression(paste("MSE: ", hat(xi)[gamma])),  
              expression(paste("MSE: ", hat(xi)[infinity])),
              expression(paste("MSE: ", tilde(xi)[gamma])),  
@@ -498,7 +500,7 @@ riskPlot2 <- function(risk, wylim = c(0, 0.2), mylim = c(0, 1.5 * risk$mse0)) {
 }
 ```
 
-## On inference after model selection {.build}
+## On inference after model selection 
 
 <div>
 *In a world with a large number of unrelated variables and no clear a priori specifications, uncritical use of standard methods will lead to models that **appear** to have a lot of explanatory power.*
@@ -508,7 +510,7 @@ Freedman, A Note on Screening Regression Equations, 1983
 </div>
 
 <div>
-*There is an abundance of advice on how to perform the mechnics of choosing a model, .... There is a dearth of respectable theory, or even trustworthy advice, ...*
+*There is an abundance of advice on how to perform the mechanics of choosing a model, .... There is a dearth of respectable theory, or even trustworthy advice, ...*
 <div class="quote">
 Miller, Subset Selection in Regression, 1990
 </div>
@@ -521,7 +523,7 @@ Breiman, The Little Bootstrap and Other Methods for Dimensionality Selection in 
 </div>
 </div>
 
-## On inference after model selection {.build}
+## On inference after model selection 
 
 <div>
 *What has happened in this field since the first edition was published in 1990? The short answer is that there has been very little real progress.*
@@ -551,7 +553,7 @@ Efron and Hastie, Computer Age Statistical Inference, 2016
 </div>
 </div>
 
-## First take home message {.build}
+## First take home message 
 
 <div>
 The following two-step procedure
@@ -567,7 +569,7 @@ ability, and under-estimation of uncertainty are some of the consequences.
 
 **Don't use, promote or teach this two-step procedure!**
 
-## AIC for Gaussian regression (fixed variance) {.build}
+## AIC for Gaussian regression (fixed variance) 
 
 If $Y \sim \mathcal{N}(\xi, \sigma^2 I)$ then 
 $$\textrm{AIC} = ||Y - \hat{\xi}||^2 / \sigma^2 + 2 d$$
@@ -577,7 +579,7 @@ a subset of dimension $d$.
 Fix $\sigma^2 = 1$ from hereon, and for $\lambda \in \Lambda$ (and index set) let
 $$\textrm{AIC}(\lambda) = ||Y - \hat{\xi}(\lambda)||^2 + 2 d(\lambda).$$
  
-Consider $\xi = X \beta$ for $X$ and $n \times p$ matrix and $\beta \in \mathbf{R}^p$.  
+Consider $\xi = X \beta$ for $X$ and $n \times p$ matrix and $\beta \in \mathbb{R}^p$.  
 
 ## n = 25, p = 5
 
@@ -619,7 +621,7 @@ tmp <- selectAIC(n = 25, p = 20, beta0 = c(1, 0.5, 0.2, 0.1), nvmax = 10)
 AICPlot(tmp$parhat, tmp$parhat0, tmp$beta0)
 ```
 
-## Model weights and model averaging {.build}
+## Model weights and model averaging 
 
 Introduce weights
 $$w_{\gamma}(\lambda) = \frac{\exp(- \gamma \textrm{AIC}(\lambda))}{\int \exp(- \gamma \textrm{AIC}(\lambda)) \pi(\mathrm{d}\lambda)}.$$
@@ -671,7 +673,7 @@ tmp <- averageAIC(n = 25, p = 20, beta0 =  c(1, 0.5, 0.2, 0.1), nvmax = 10)
 AICPlot(tmp$parhat, tmp$parhat0, tmp$beta0, weights = tmp$weights, method = "average")
 ```
 
-## Summary {.build}
+## Summary 
 
 <div>
 Model selection estimators
@@ -689,7 +691,7 @@ Model averaging estimators
 via bootstrapping). 
 </div>
 
-## Second take home message {.build}
+## Second take home message 
 
 But isn't model selection based on AIC sensible?
 
@@ -707,7 +709,7 @@ AIC is a prediction error estimate for a **fixed model**.
 **AIC doesn't adjust for model selection.**
 
 
-## AIC as a prediction error estimate {.build}
+## AIC as a prediction error estimate 
 
 <div>
 Let $Y \perp \!\! \perp Y^{\textrm{New}}$ and $Y \overset{\mathcal{D}}{=} Y^{\textrm{New}}$. 
@@ -721,7 +723,7 @@ Thus
 $$\textrm{AIC}(\lambda) - n = ||Y - S_{\lambda}Y||^2 + 2 d(\lambda) - n$$
 is an unbiased estimate of MSE. 
 
-## Forward stepwise variable selection {.build}
+## Forward stepwise variable selection 
 
 If $S_{\lambda}$ is a **fixed** projection then $d(\lambda) = \textrm{rank}(S_{\lambda})$.
 
@@ -772,7 +774,7 @@ riskPlot(tmp, mylim = c(0, 60))
 <!-- $$d(\lambda) = \mathrm{div}(f_{\lambda})(Y) = \sum_{j=1}^n \partial_j f_{\lambda}(Y) = \mathrm{tr}(D f_{\lambda}(Y)).$$ -->
 <!-- provided $Y \sim \mathcal{N}(\xi, I)$ and $f_{\lambda}$ is **differentiable.** -->
 
-## Generalized information criteria {.build}
+## Generalized information criteria 
 
 $$\textrm{IC} = ||Y - \hat{\xi}||^2 + c(d, n, p).$$
 **Akaike:** $c(d, n, p) = 2 d.$
@@ -785,7 +787,7 @@ $$\textrm{IC} = ||Y - \hat{\xi}||^2 + c(d, n, p).$$
 
 We propose a new choice of $c(d, n, p)$. 
 
-## Model selection {.build}
+## Model selection 
 
 ```{r, echo = FALSE, out.width=600, fig.align='center'}
 knitr::include_graphics("modelSelectv2.png")
@@ -795,7 +797,7 @@ Model selection results in **nonlinear** and **discontinuous** estimators.
 $$E || Y^{\mathrm{New}} -  \hat{\xi}(\lambda)||^2 = E(\mathrm{AIC}(\lambda)) + 2 q \lambda \partial_{\lambda} E(d(\lambda)) + R$$
 for some model selection estimators. *Debiased lasso*: $R = 0$ and $q = 1$.
 
-## Forward stepwise variable selection {.build}
+## Forward stepwise variable selection 
 
 Define for $\lambda \geq 0$
 $$
