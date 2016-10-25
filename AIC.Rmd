@@ -4,8 +4,6 @@ author: "Niels Richard Hansen"
 date: "October 25 2016"
 output: 
   ioslides_presentation:
-    mathjax: local
-    self_contained: false
     fig_width: 7
     fig_height: 4
     css: "AIC.css"
