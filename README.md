@@ -3,7 +3,7 @@ Information criteria, model selection and model averaging
 
 This is the source code for the talk 
 
-* Why AIC doesn’t do what you think and what can be done about it*
+*Why AIC doesn’t do what you think and what can be done about it*
 
 presented at the [DSTS two-day meeting in Aalborg](http://people.math.aau.dk/~rw/TwodayMeetingFall16/), October 25, 2016. 
 
